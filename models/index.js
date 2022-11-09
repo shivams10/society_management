@@ -31,7 +31,7 @@ const db = { }
 db.Sequelize = Sequelize;
 db.sequelize = Sequelize;
 
-db.users = require("")(sequelize, DataTypes);
+db.users = require("./usersModel")(sequelize, DataTypes);
 db.resources = require("")(sequelize, DataTypes);
 db.occupancies = require("")(sequelize, DataTypes);
 
