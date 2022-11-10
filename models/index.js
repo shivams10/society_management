@@ -33,7 +33,7 @@ db.sequelize = Sequelize;
 
 db.users = require("./usersModel")(sequelize, DataTypes);
 db.resources = require("./resourcesModel")(sequelize, DataTypes);
-db.occupancies = require("./occupanciesModel")(sequelize, DataTypes);
+db.occupancies = require("./occupanciesModelf")(sequelize, DataTypes);
 
 db.sequelize.sync({force: false})
 .then(()=> {
