@@ -11,4 +11,4 @@ const compareHash = async (password, hashPassword) => {
 module.exports = {
   createHash,
   compareHash,
-};
+}; 
