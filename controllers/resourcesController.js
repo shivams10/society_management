@@ -1,4 +1,4 @@
-const db = require("../models");
+const {db} = require("../models/index.js");
 
 const resources = db.resources;
 
@@ -16,7 +16,7 @@ const addResource = async (req, res) => {
 
 // Get all Resource
 const getAllResources = async (req, res) => {
-  let resources = await resources.findAll({
+  let resource = await resources.findAll({
     attributes: [
       "id",
       "resource_name",
@@ -24,7 +24,7 @@ const getAllResources = async (req, res) => {
       "is_deleted",
     ],
   });
-  res.status(200).send(resources);
+  res.status(200).send(resource);
 };
 
 // Get single resource

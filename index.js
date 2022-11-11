@@ -1,10 +1,21 @@
 const express = require ("express");
 const cors = require("cors");
+const router = require('./routes/usersRouter.js')
+const resourcesRouter = require("./routes/resourceRouter.js")
+const occupanciesRouter = require("./routes/occupanciesRouter.js")
+const {authticateDb} = require('./models/index');
 
 const app = express();
 
+
+authticateDb();
+
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
+app.use("/api", router);
+app.use("/api", resourcesRouter);
+app.use("/api", occupanciesRouter);
+
 
 app.get("/", (req,res) => {
      res.json({message: "Heloo"})

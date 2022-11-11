@@ -1,5 +1,3 @@
-import { users } from "./usersModel";
-import { resources } from "./resourcesModel";
 
 module.exports = (sequelize, DataTypes) => {
     const occupancies = sequelize.define("occupancies",{
@@ -7,9 +5,6 @@ module.exports = (sequelize, DataTypes) => {
             type : DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        },
-        resource_id: {
-            type : DataTypes.INTEGER,
         },
         is_available: {
             type: DataTypes.BOOLEAN, 
@@ -19,18 +14,22 @@ module.exports = (sequelize, DataTypes) => {
         occupancy_date: {
             type: DataTypes.DATE,
             allowNull: false,
+        },
+        is_deleted: {
+            type: DataTypes.BOOLEAN, 
+            allowNull: false, 
+            defaultValue: false
         }
+    },{
+      timestamps: false,
+
+  // I don't want createdAt
+  createdAt: false,
+  updatedAt: false,
+
+
+
     });
-    occupancies.belongsTo(users, {
-        foreignKey: {
-          name: "user_id",
-        },
-      });
-    occupancies.belongsTo(resources, {
-       foreignKey: {
-          name: "resource_id",
-        },
-      });
 
     return occupancies;
 }
