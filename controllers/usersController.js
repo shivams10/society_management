@@ -14,7 +14,7 @@ const addUser = async (req, res) => {
     is_admin: req.body.is_admin ? req.body.is_admin : false,
     is_deleted: req.body.is_deleted ? req.body.is_deleted : false,
   };
-  const user = await users.create(info);
+  const user = await users.create(info); 
   res.status(200).send(user);
   console.log(user);
 };
