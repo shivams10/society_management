@@ -1,15 +1,17 @@
 const {db} = require("../models/index");
-
+const {loginUser} = require("../services/loginService.js")
+ const {createHash} = require("../auth/hashPassword");
 const users = db.users;
 
 // Create User
 const addUser = async (req, res) => {
+  let password = await createHash(req.body.password);
   let info = {
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     contact: req.body.contact,
     email: req.body.email,
-    password: req.body.password,
+    password: password,
     token: req.body.token,
     is_admin: req.body.is_admin ? req.body.is_admin : false,
     is_deleted: req.body.is_deleted ? req.body.is_deleted : false,
@@ -18,6 +20,19 @@ const addUser = async (req, res) => {
   res.status(200).send(user);
   console.log(user);
 };
+
+// Login 
+const login = (req, res) => {
+ loginUser({ ...req.body }, (err, result, status_code) => {
+      if (err) {
+          return res.status(status_code).json({ error: err });
+      }
+      console.log(result.token);
+      res.cookie("token", result.token, { expire: new Date() + 100000 });
+      return res.status(status_code).json({ result });
+  });
+};
+
 
 // Get all User
 const getAllUsers = async (req, res) => {
@@ -69,6 +84,7 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   addUser,
+  login,
   getAllUsers,
   getOneUser,
   updateUser,

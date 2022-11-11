@@ -4,12 +4,14 @@ const router = require('./routes/usersRouter.js')
 const resourcesRouter = require("./routes/resourceRouter.js")
 const occupanciesRouter = require("./routes/occupanciesRouter.js")
 const {authticateDb} = require('./models/index');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
 
 authticateDb();
 
+app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 app.use("/api", router);
