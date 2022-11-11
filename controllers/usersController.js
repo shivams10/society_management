@@ -1,4 +1,4 @@
-const db = require("../models");
+const {db} = require("../models/index");
 
 const users = db.users;
 
@@ -21,7 +21,7 @@ const addUser = async (req, res) => {
 
 // Get all User
 const getAllUsers = async (req, res) => {
-  let users = await users.findAll({
+  let user = await users.findAll({
     attributes: [
       "id",
       "first_name",
@@ -32,7 +32,7 @@ const getAllUsers = async (req, res) => {
       "is_deleted",
     ],
   });
-  res.status(200).send(users);
+  res.status(200).send(user);
 };
 
 // Get single user

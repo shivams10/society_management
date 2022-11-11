@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+    
     const resources = sequelize.define("resources",{
         id: {
             type : DataTypes.INTEGER,
@@ -18,7 +19,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN, 
             allowNull: false, 
             defaultValue: false
-        },
+        }
+    },{
+        timestamps: false,
+
+  createdAt: false,
+  updatedAt: false,
+
+
     })
 
     return resources;

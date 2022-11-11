@@ -32,13 +32,21 @@ module.exports = (sequelize, DataTypes) => {
         is_admin: {
             type: DataTypes.BOOLEAN, 
             allowNull: false, 
-            defaultValue: true
+            defaultValue: false
         },
         is_deleted: {
             type: DataTypes.BOOLEAN, 
             allowNull: true, 
             defaultValue: false
         },
+    },{
+        timestamps: true,
+
+  // I don't want createdAt
+  createdAt: false,
+  updatedAt: false,
+
+
     })
 
     return users;
